@@ -14,6 +14,7 @@ public class PuzzleSolverTester
 		PuzzleSolverTester.testFrameSudoku3by2();
 		PuzzleSolverTester.testFrameSudoku3by3();
 		PuzzleSolverTester.testCalcudoku();
+		PuzzleSolverTester.testFutoshiki();
 	}
 
 
@@ -86,6 +87,30 @@ public class PuzzleSolverTester
 		};
 
 		Solver solver = new CalcudokuSolver(6, regions);
+		PuzzleSolverTester.solve(solver);
+	}
+
+
+	private static void testFutoshiki()
+	{
+		int[][] board = {
+			{4, 0, 0, 0, 3},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+			{5, 0, 0, 0, 1},
+		};
+
+		int[][][] relations = {
+			{{0, 3}, {0, 4}},
+			{{2, 3}, {3, 3}},
+			{{3, 1}, {2, 1}},
+			{{3, 2}, {3, 1}},
+			{{4, 2}, {4, 1}},
+			{{4, 3}, {4, 1}},
+		};
+
+		Solver solver = new FutoshikiSolver(board, relations);
 		PuzzleSolverTester.solve(solver);
 	}
 

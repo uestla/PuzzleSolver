@@ -8,6 +8,7 @@ Solvers for various sudoku-like puzzles written in Java. All implementations use
 - [Sudoku Solver](#sudoku-solver)
 - [Frame Sudoku Solver](#frame-sudoku-solver)
 - [Calcudoku Solver](#calcudoku-solver)
+- [Futoshiki Solver](#futoshiki-solver)
 
 
 ## Sudoku Solver
@@ -227,6 +228,60 @@ SolverPrinter.printBoard(calcudoku);
 6 1 2 3 4 5
 2 5 4 1 6 3
 3 2 5 6 1 4
+*/
+```
+
+
+## Futoshiki Solver
+
+[Wikipedia link](https://en.wikipedia.org/wiki/Futoshiki)
+
+### Constructor:
+
+`FutoshikiSolver(int[][] board, int[][] relations)`
+
+- `board` - 2dim array of 0-5 numbers (0 means empty)
+- `relations` - 3dim array of coordinates of 2 fields - the first one is bigger than the second one, field `int[] {<row>, <col>}`
+
+### Example: *)
+
+![Futoshiki Example](examples/futoshiki.png)
+
+would be written as
+
+```java
+int[][] board = {
+	{4, 0, 0, 0, 3},
+	{0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0},
+	{5, 0, 0, 0, 1},
+};
+
+int[][][] relations = {
+	{{0, 3}, {0, 4}},
+	{{2, 3}, {3, 3}},
+	{{3, 1}, {2, 1}},
+	{{3, 2}, {3, 1}},
+	{{4, 2}, {4, 1}},
+	{{4, 3}, {4, 1}},
+};
+
+Solver futoshiki = new FutoshikiSolver(board, relations);
+```
+
+To solve the puzzle use `solve()` method. There is a also useful `SolverPrinter.printBoard()` helper method to pretty-print the board:
+
+```java
+futoshiki.solve();
+SolverPrinter.printBoard(futoshiki);
+
+/* Outputs:
+4 1 2 5 3
+2 5 1 3 4
+1 3 4 2 5
+3 4 5 1 2
+5 2 3 4 1
 */
 ```
 
