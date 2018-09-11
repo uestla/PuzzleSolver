@@ -11,6 +11,8 @@ public class PuzzleSolverTester
 	public static void main(String[] args)
 	{
 		PuzzleSolverTester.testSudoku();
+		PuzzleSolverTester.testFrameSudoku3by2();
+		PuzzleSolverTester.testFrameSudoku3by3();
 	}
 
 
@@ -29,6 +31,34 @@ public class PuzzleSolverTester
 		};
 
 		Solver solver = new SudokuSolver(board);
+		PuzzleSolverTester.solve(solver);
+	}
+
+
+	private static void testFrameSudoku3by2()
+	{
+		int[][] sums = {
+			{9, 5, 7, 8, 9, 4},
+			{8, 5, 8, 4, 8, 9},
+			{7, 14, 8, 13, 13, 8},
+			{14, 7, 13, 8, 8, 13},
+		};
+
+		Solver solver = new FrameSudokuSolver(sums, 3, 2);
+		PuzzleSolverTester.solve(solver);
+	}
+
+
+	private static void testFrameSudoku3by3()
+	{
+		int[][] sums = {
+			{11, 23, 11, 8, 18, 19, 17, 21, 7},
+			{16, 10, 19, 18, 12, 15, 16, 11, 18},
+			{13, 21, 11, 22, 16, 7, 9, 22, 14},
+			{16, 15, 14, 8, 20, 17, 12, 12, 21},
+		};
+
+		Solver solver = new FrameSudokuSolver(sums, 3, 3);
 		PuzzleSolverTester.solve(solver);
 	}
 
