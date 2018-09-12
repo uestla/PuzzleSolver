@@ -17,6 +17,18 @@ public abstract class UniqueRowColRegionSolver extends UniqueRowColSolver
 	}
 
 
+	final public int getRegionWidth()
+	{
+		return this.regionWidth;
+	}
+
+
+	final public int getRegionHeight()
+	{
+		return this.regionHeight;
+	}
+
+
 	@Override
 	protected boolean canBePlaced(int row, int col, int value)
 	{

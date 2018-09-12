@@ -24,6 +24,13 @@ public abstract class UniqueRowColSolver implements Solver
 
 
 	@Override
+	final public int getBoardValue(int row, int col)
+	{
+		return this.board[row][col];
+	}
+
+
+	@Override
 	final public boolean solve()
 	{
 		int[] coords = this.getFirstEmptyField();
