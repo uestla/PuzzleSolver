@@ -7,6 +7,7 @@ Solvers for various sudoku-like puzzles written in Java. All implementations use
 
 - [Sudoku Solver](#sudoku-solver)
 - [Frame Sudoku Solver](#frame-sudoku-solver)
+- [Calcudoku Solver](#calcudoku-solver)
 
 
 ## Sudoku Solver
@@ -160,6 +161,72 @@ SolverPrinter.printBoard(frameSudoku);
 | 8 5 9 | 6 1 4 | 7 2 3 |
 | 6 1 7 | 5 3 2 | 8 4 9 |
 +-------+-------+-------+
+*/
+```
+
+
+## Calcudoku Solver
+
+[Wikipedia link](https://en.wikipedia.org/wiki/KenKen)
+
+### Constructor:
+
+`CalcudokuSolver(int boardSize, int[][][] regions);`
+
+- `boardSize` - size of the board
+- `regions` - multidimensional array describing regions
+  - each region is an array of `int[] {a, b}`
+  - first item of each region is `int[] {<total>, <operation>}`
+    - `total` - the total value of region
+    - `operation` - fields operation for region - one of following:
+      - `0` - for +
+      - `1` - for -
+      - `2` - for ×
+      - `3` - for ÷
+  - other region items are `int[] {<row>, <col>}` which are coordinates of fields that belong to that region
+
+### Example: *)
+
+![Calcudoku Example](examples/calcudoku.png)
+
+would be written as
+
+```java
+int[][][] regions = {
+	{{5, 0}, {0, 0}, {0, 1}},
+	{{3, 2}, {0, 2}, {1, 2}},
+	{{10, 0}, {0, 3}, {1, 3}, {1, 4}},
+	{{30, 2}, {0, 4}, {0, 5}},
+	{{10, 0}, {1, 0}, {1, 1}},
+	{{2, 3}, {1, 5}, {2, 5}},
+	{{1, 1}, {2, 0}, {2, 1}, {3, 1}},
+	{{4, 1}, {2, 2}, {3, 2}},
+	{{12, 2}, {2, 3}, {3, 3}},
+	{{40, 2}, {2, 4}, {3, 4}, {3, 5}},
+	{{3, 3}, {3, 0}, {4, 0}},
+	{{100, 2}, {4, 1}, {4, 2}, {5, 2}},
+	{{5, 1}, {4, 3}, {5, 3}},
+	{{9, 0}, {4, 4}, {4, 5}},
+	{{5, 0}, {5, 0}, {5, 1}},
+	{{4, 2}, {5, 4}, {5, 5}},
+};
+
+Solver calcudoku = new CalcudokuSolver(6, regions);
+```
+
+To solve the puzzle use `solve()` method. There is a also useful `SolverPrinter.printBoard()` helper method to pretty-print the board:
+
+```java
+calcudoku.solve();
+SolverPrinter.printBoard(calcudoku);
+
+/* Outputs:
+1 4 3 2 5 6
+4 6 1 5 3 2
+5 3 6 4 2 1
+6 1 2 3 4 5
+2 5 4 1 6 3
+3 2 5 6 1 4
 */
 ```
 

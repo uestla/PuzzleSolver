@@ -13,6 +13,7 @@ public class PuzzleSolverTester
 		PuzzleSolverTester.testSudoku();
 		PuzzleSolverTester.testFrameSudoku3by2();
 		PuzzleSolverTester.testFrameSudoku3by3();
+		PuzzleSolverTester.testCalcudoku();
 	}
 
 
@@ -59,6 +60,32 @@ public class PuzzleSolverTester
 		};
 
 		Solver solver = new FrameSudokuSolver(sums, 3, 3);
+		PuzzleSolverTester.solve(solver);
+	}
+
+
+	private static void testCalcudoku()
+	{
+		int[][][] regions = {
+			{{5, 0}, {0, 0}, {0, 1}},
+			{{3, 2}, {0, 2}, {1, 2}},
+			{{10, 0}, {0, 3}, {1, 3}, {1, 4}},
+			{{30, 2}, {0, 4}, {0, 5}},
+			{{10, 0}, {1, 0}, {1, 1}},
+			{{2, 3}, {1, 5}, {2, 5}},
+			{{1, 1}, {2, 0}, {2, 1}, {3, 1}},
+			{{4, 1}, {2, 2}, {3, 2}},
+			{{12, 2}, {2, 3}, {3, 3}},
+			{{40, 2}, {2, 4}, {3, 4}, {3, 5}},
+			{{3, 3}, {3, 0}, {4, 0}},
+			{{100, 2}, {4, 1}, {4, 2}, {5, 2}},
+			{{5, 1}, {4, 3}, {5, 3}},
+			{{9, 0}, {4, 4}, {4, 5}},
+			{{5, 0}, {5, 0}, {5, 1}},
+			{{4, 2}, {5, 4}, {5, 5}},
+		};
+
+		Solver solver = new CalcudokuSolver(6, regions);
 		PuzzleSolverTester.solve(solver);
 	}
 
